@@ -54,10 +54,12 @@ message Get{{.ResourceName | ToTitle}}Response {
 
 // The standard Create request definition.
 message Create{{.ResourceName | ToTitle}}Request {
+  // Idempotentcy request id to prevent duplicate requests.
+  string Idempotentcy_id = 1;
   // The {{.ResourceName}} to create.
-  {{.ResourceName | ToTitle}} {{.ResourceName}} = 1;
+  {{.ResourceName | ToTitle}} {{.ResourceName}} = 2;
   // The unique id of the parent {{.ParentName}} where the {{.ResourceName}} is to be created.
-  string {{.ParentName}}_id = 2;
+  string {{.ParentName}}_id = 3;
 }
 
 // The standard Create response definition.
@@ -68,6 +70,8 @@ message Create{{.ResourceName | ToTitle}}Response {
 
 // The standard Update request definition.
 message Update{{.ResourceName | ToTitle}}Request {
+  // Idempotentcy request id to prevent duplicate requests.
+  string Idempotentcy_id = 1;
   // The id of the {{.ResourceName}} to be updated.
   string id = 1;
   // The {{.ResourceName}} which replaces the {{.ResourceName}} on the server.
@@ -84,6 +88,8 @@ message Update{{.ResourceName | ToTitle}}Response {
 
 // The standard Delete request definition.
 message Delete{{.ResourceName | ToTitle}}Request {
+  // Idempotentcy request id to prevent duplicate requests.
+  string Idempotentcy_id = 1;
   // The id of the {{.ResourceName}} to be deleted.
   string id = 1;
 }
